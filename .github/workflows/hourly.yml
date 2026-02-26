@@ -11,7 +11,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with: {python-version: '3.10'}
-      - run: pip install google-genai requests
+      - run: pip install google-genai requests **gspread google-auth**
       - run: python research_bot.py hourly # 뒤에 hourly를 붙여서 실행
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
