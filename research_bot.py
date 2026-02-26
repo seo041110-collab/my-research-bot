@@ -16,7 +16,12 @@ def generate_research():
     client = genai.Client(api_key=api_key)
     
     model = "gemini-2.5-flash"
-    user_query = "SK하이닉스와 TSMC의 최신 반도체 뉴스, 그리고 이더리움 시황을 분석해서 보고서를 써줘."
+    user_query = """
+1. 비트코인(BTC): 현재 온체인 지표, 미국 ETF 유입량 현황, 그리고 주요 지지선/저항선을 분석해줘.
+2. 이더리움(ETH): 비트코인과의 상관관계(ETH/BTC 차트)를 분석하고, 스테이킹 유입량 변화를 체크해줘.
+3. 반도체(SK하이닉스, TSMC): 엔비디아와 관련된 최신 공급망 이슈를 분석해줘.
+위 내용을 종합해서 '긴급성' 위주로 보고서를 작성해줘.
+"""
 
     generate_content_config = types.GenerateContentConfig(
         tools=[types.Tool(googleSearch=types.GoogleSearch())],
