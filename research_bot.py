@@ -90,15 +90,21 @@ def run():
         sys_instr = "너는 실시간 금융 속보 기자야. 불필요한 서술은 빼고 팩트와 수치 위주로 짧게 보고해."
 
     # --- AI 리포트 생성 ---
+# --- AI 리포트 생성 ---
     try:
-response = client.models.generate_content(
-            model="gemini-1.5-flash", 
+        # 이 줄부터 아래 끝까지는 반드시 앞쪽에 공백(들여쓰기)이 있어야 합니다.
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
             contents=user_query,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(googleSearch=types.GoogleSearch())],
                 system_instruction=sys_instr
             )
         )
+        report = response.text if response.text else "AI 응답 내용이 비어있습니다."
+    except Exception as e:
+        report = f"AI 리서치 중 에러 발생: {e}"
+        print(f"❌ AI 생성 실패: {e}")
         report = response.text if response.text else "AI 응답 내용이 비어있습니다."
     except Exception as e:
         report = f"AI 리서치 중 에러 발생: {e}"
