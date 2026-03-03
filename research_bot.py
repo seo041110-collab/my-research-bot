@@ -92,7 +92,7 @@ def run():
     # --- AI 리포트 생성 ---
     try:
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+           model="gemini-1.5-flash-latest",
             contents=user_query,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(googleSearch=types.GoogleSearch())],
